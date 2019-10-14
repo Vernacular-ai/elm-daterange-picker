@@ -118,10 +118,10 @@ encode (Range { begin, end }) =
 format : Time.Zone -> Range -> String
 format zone (Range { begin, end }) =
     if Helpers.sameDay zone begin end then
-        "on " ++ Helpers.formatDate zone begin
+        Helpers.formatDate zone begin
 
     else
-        "from " ++ Helpers.formatDate zone begin ++ " to " ++ Helpers.formatDate zone end
+        Helpers.formatDate zone begin ++ " - " ++ Helpers.formatDate zone end
 
 
 {-| Extract a [`Range`](#Range) from a String, where the two Posix timestamps are
