@@ -2,7 +2,7 @@ module DateRangePicker.Range exposing
     ( Range, create, beginsAt, endsAt
     , between, days, format
     , decode, encode, fromString, toString, toTuple
-    , formatUtc
+    , formatUtc, formatUtcBegin, formatUtcEnd
     )
 
 {-| Date range management.
@@ -127,7 +127,17 @@ format zone (Range { begin, end }) =
 
 formatUtc : Time.Zone -> Range -> List String
 formatUtc zone (Range { begin, end }) =
-        [ Helpers.formatDate zone begin, Helpers.formatDate zone end ]
+    [ Helpers.formatDate zone begin, Helpers.formatDate zone end ]
+
+
+formatUtcBegin : Time.Zone -> Range -> String
+formatUtcBegin zone (Range { begin, end }) =
+    Helpers.formatDate zone begin
+
+
+formatUtcEnd : Time.Zone -> Range -> String
+formatUtcEnd zone (Range { begin, end }) =
+    Helpers.formatDate zone end
 
 
 {-| Extract a [`Range`](#Range) from a String, where the two Posix timestamps are
